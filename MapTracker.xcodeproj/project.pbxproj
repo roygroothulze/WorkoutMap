@@ -6,22 +6,25 @@
 	objectVersion = 70;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C05A26EB2C8746850052F53A /* MapTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A26EA2C8746850052F53A /* MapTrackerApp.swift */; };
+		C05A26ED2C8746850052F53A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A26EC2C8746850052F53A /* ContentView.swift */; };
+		C05A26EF2C8746850052F53A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A26EE2C8746850052F53A /* Item.swift */; };
+		C05A26F12C8746870052F53A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C05A26F02C8746870052F53A /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		C05A26E72C8746850052F53A /* MapTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C05A26EA2C8746850052F53A /* MapTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTrackerApp.swift; sourceTree = "<group>"; };
+		C05A26EC2C8746850052F53A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C05A26EE2C8746850052F53A /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		C05A26F02C8746870052F53A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C05A26F52C8746870052F53A /* MapTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MapTracker.entitlements; sourceTree = "<group>"; };
+		C05A26F62C8746870052F53A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		C05A26F72C8746870052F53A /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = C05A26E62C8746850052F53A /* MapTracker */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		C05A26E92C8746850052F53A /* MapTracker */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (C05A26F72C8746870052F53A /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = MapTracker; sourceTree = "<group>"; };
+		C05A26FF2C876E130052F53A /* Preview Content */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Preview Content"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +41,7 @@
 		C05A26DE2C8746850052F53A = {
 			isa = PBXGroup;
 			children = (
-				C05A26E92C8746850052F53A /* MapTracker */,
+				C05A26FD2C876E060052F53A /* MapTracker */,
 				C05A26E82C8746850052F53A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +52,20 @@
 				C05A26E72C8746850052F53A /* MapTracker.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C05A26FD2C876E060052F53A /* MapTracker */ = {
+			isa = PBXGroup;
+			children = (
+				C05A26EA2C8746850052F53A /* MapTrackerApp.swift */,
+				C05A26F02C8746870052F53A /* Assets.xcassets */,
+				C05A26EC2C8746850052F53A /* ContentView.swift */,
+				C05A26F62C8746870052F53A /* Info.plist */,
+				C05A26EE2C8746850052F53A /* Item.swift */,
+				C05A26F52C8746870052F53A /* MapTracker.entitlements */,
+				C05A26FF2C876E130052F53A /* Preview Content */,
+			);
+			path = MapTracker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -67,7 +84,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				C05A26E92C8746850052F53A /* MapTracker */,
+				C05A26FF2C876E130052F53A /* Preview Content */,
 			);
 			name = MapTracker;
 			packageProductDependencies = (
@@ -115,6 +132,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C05A26F12C8746870052F53A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +143,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C05A26ED2C8746850052F53A /* ContentView.swift in Sources */,
+				C05A26EF2C8746850052F53A /* Item.swift in Sources */,
+				C05A26EB2C8746850052F53A /* MapTrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
