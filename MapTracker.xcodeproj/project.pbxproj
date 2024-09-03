@@ -92,7 +92,7 @@
 				};
 			};
 			buildConfigurationList = C05A26E22C8746850052F53A /* Build configuration list for PBXProject "MapTracker" */;
-			compatibilityVersion = "Xcode 15.3";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
