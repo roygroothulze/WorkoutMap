@@ -9,18 +9,24 @@
 /* Begin PBXBuildFile section */
 		C05A26EB2C8746850052F53A /* MapTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A26EA2C8746850052F53A /* MapTrackerApp.swift */; };
 		C05A26ED2C8746850052F53A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A26EC2C8746850052F53A /* ContentView.swift */; };
-		C05A26EF2C8746850052F53A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A26EE2C8746850052F53A /* Item.swift */; };
 		C05A26F12C8746870052F53A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C05A26F02C8746870052F53A /* Assets.xcassets */; };
+		C0B4B7AF2C8836E5001495E9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4B7AE2C8836E3001495E9 /* LocationManager.swift */; };
+		C0B4B7B22C883725001495E9 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4B7B12C883725001495E9 /* Array+Extensions.swift */; };
+		C0B4B7B42C88372B001495E9 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4B7B32C88372B001495E9 /* Double+Extensions.swift */; };
+		C0B4B7B62C88373A001495E9 /* CLLocationCoordinate2D+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4B7B52C88373A001495E9 /* CLLocationCoordinate2D+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C05A26E72C8746850052F53A /* MapTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05A26EA2C8746850052F53A /* MapTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTrackerApp.swift; sourceTree = "<group>"; };
 		C05A26EC2C8746850052F53A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		C05A26EE2C8746850052F53A /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		C05A26F02C8746870052F53A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C05A26F52C8746870052F53A /* MapTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MapTracker.entitlements; sourceTree = "<group>"; };
 		C05A26F62C8746870052F53A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0B4B7AE2C8836E3001495E9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		C0B4B7B12C883725001495E9 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		C0B4B7B32C88372B001495E9 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		C0B4B7B52C88373A001495E9 /* CLLocationCoordinate2D+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -58,14 +64,33 @@
 			isa = PBXGroup;
 			children = (
 				C05A26EA2C8746850052F53A /* MapTrackerApp.swift */,
-				C05A26F02C8746870052F53A /* Assets.xcassets */,
 				C05A26EC2C8746850052F53A /* ContentView.swift */,
+				C0B4B7B02C883707001495E9 /* Extensions */,
+				C0B4B7AD2C8836CF001495E9 /* Managers */,
+				C05A26F02C8746870052F53A /* Assets.xcassets */,
 				C05A26F62C8746870052F53A /* Info.plist */,
-				C05A26EE2C8746850052F53A /* Item.swift */,
 				C05A26F52C8746870052F53A /* MapTracker.entitlements */,
 				C05A26FF2C876E130052F53A /* Preview Content */,
 			);
 			path = MapTracker;
+			sourceTree = "<group>";
+		};
+		C0B4B7AD2C8836CF001495E9 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C0B4B7AE2C8836E3001495E9 /* LocationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		C0B4B7B02C883707001495E9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C0B4B7B12C883725001495E9 /* Array+Extensions.swift */,
+				C0B4B7B32C88372B001495E9 /* Double+Extensions.swift */,
+				C0B4B7B52C88373A001495E9 /* CLLocationCoordinate2D+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,8 +169,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05A26ED2C8746850052F53A /* ContentView.swift in Sources */,
-				C05A26EF2C8746850052F53A /* Item.swift in Sources */,
+				C0B4B7B62C88373A001495E9 /* CLLocationCoordinate2D+Extensions.swift in Sources */,
 				C05A26EB2C8746850052F53A /* MapTrackerApp.swift in Sources */,
+				C0B4B7AF2C8836E5001495E9 /* LocationManager.swift in Sources */,
+				C0B4B7B22C883725001495E9 /* Array+Extensions.swift in Sources */,
+				C0B4B7B42C88372B001495E9 /* Double+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,8 +199,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -206,8 +235,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

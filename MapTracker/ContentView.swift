@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 import MapKit
 
 struct MapRoutePart: Identifiable {
@@ -38,8 +37,21 @@ struct ContentView: View {
                     }
                     
                     ForEach(selectedLocations, id: \.id) { location in
-                        Marker(coordinate: location) {
-                            Text("")
+                        if (location == selectedLocations.first) {
+                            Marker(coordinate: location) {
+                                Image(systemName: "flag.fill")
+                            }
+                            .tint(.red)
+                        } else if (location == selectedLocations.last) {
+                            Marker(coordinate: location) {
+                                Image(systemName: "flag.pattern.checkered")
+                            }
+                            .tint(.green)
+                        } else {
+                            Marker(coordinate: location) {
+                                Text("")
+                            }
+                            .tint(.blue.opacity(0.5))
                         }
                     }
                 }
@@ -53,8 +65,12 @@ struct ContentView: View {
             
             VStack {
                 Text("\(selectedKilometers.to2Decimals()) km")
+                    .foregroundStyle(.black)
+                
+                Divider()
                 
                 HStack {
+                    Spacer()
                     Button {
                         showConfirmDeleteDialog.toggle()
                     } label: {
@@ -73,6 +89,10 @@ struct ContentView: View {
                         Text("Are you sure you want to reset all locations?")
                     }
                     
+                    Spacer()
+                    Divider()
+                    Spacer()
+                    
                     Button {
                         selectedLocations.savelyRemoveLast()
                         let lastPart = mapRouteParts.savelyRemoveLast()
@@ -80,11 +100,13 @@ struct ContentView: View {
                     } label: {
                         Text("Undo")
                     }
+                    Spacer()
                 }
             }
             .padding()
+            .frame(width: 200, height: 100)
             .background(.white)
-            .cornerRadius(30)
+            .cornerRadius(20)
             .padding(.bottom, 1)
         }
         .onAppear {
@@ -123,67 +145,5 @@ struct ContentView: View {
             }
         }
         
-    }
-}
-
-extension CLLocationCoordinate2D {
-    static let utrecht = CLLocationCoordinate2D(latitude: 52.0833, longitude: 5.1217)
-}
-
-extension CLLocationCoordinate2D: @retroactive Identifiable, @retroactive Equatable {
-    public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
-        if lhs.id != rhs.id { return false }
-        return lhs.id == rhs.id
-    }
-    
-    public var id: String { "\(latitude),\(longitude)" }
-}
-
-extension Array {
-    @discardableResult
-    mutating func savelyRemoveLast() -> Element? {
-        if self.count > 0 {
-            let last = self.last!
-            self.removeLast()
-            return last
-        }
-        return nil
-    }
-}
-
-extension Double {
-    func to2Decimals() -> String {
-        // Return string of this double but with 2 decimals
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 2
-        return formatter.string(from: NSNumber(value: self)) ?? ""
-    }
-}
-
-final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
-    @Published var lastKnownLocation: CLLocationCoordinate2D?
-    var manager = CLLocationManager()
-    
-    func checkLocationAuthorization() {
-        manager.delegate = self
-        manager.startUpdatingLocation()
-        
-        switch manager.authorizationStatus {
-        case .notDetermined:
-            manager.requestWhenInUseAuthorization()
-        case .authorizedWhenInUse, .authorizedAlways:
-            lastKnownLocation = manager.location?.coordinate
-            break
-        default:
-            break
-        }
-    }
-    
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        checkLocationAuthorization()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        lastKnownLocation = locations.last?.coordinate
     }
 }
