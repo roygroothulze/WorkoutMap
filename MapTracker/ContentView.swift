@@ -31,6 +31,8 @@ struct ContentView: View {
                 Map(
                     position: $mapPosition
                 ) {
+                    UserAnnotation()
+                    
                     ForEach(mapRouteParts, id: \.id) { part in
                         MapPolyline(part.polyline)
                             .stroke(.blue, lineWidth: 2)
