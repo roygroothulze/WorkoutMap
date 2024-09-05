@@ -14,6 +14,8 @@
 		C0B4B7B22C883725001495E9 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4B7B12C883725001495E9 /* Array+Extensions.swift */; };
 		C0B4B7B42C88372B001495E9 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4B7B32C88372B001495E9 /* Double+Extensions.swift */; };
 		C0B4B7B62C88373A001495E9 /* CLLocationCoordinate2D+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4B7B52C88373A001495E9 /* CLLocationCoordinate2D+Extensions.swift */; };
+		C0B4B7B92C89E872001495E9 /* MapRoutePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4B7B82C89E870001495E9 /* MapRoutePart.swift */; };
+		C0B4B7C02C89E939001495E9 /* MapPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4B7BF2C89E939001495E9 /* MapPlannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		C0B4B7B12C883725001495E9 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		C0B4B7B32C88372B001495E9 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		C0B4B7B52C88373A001495E9 /* CLLocationCoordinate2D+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Extensions.swift"; sourceTree = "<group>"; };
+		C0B4B7B82C89E870001495E9 /* MapRoutePart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRoutePart.swift; sourceTree = "<group>"; };
+		C0B4B7BF2C89E939001495E9 /* MapPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -63,10 +67,12 @@
 		C05A26FD2C876E060052F53A /* MapTracker */ = {
 			isa = PBXGroup;
 			children = (
-				C05A26EA2C8746850052F53A /* MapTrackerApp.swift */,
-				C05A26EC2C8746850052F53A /* ContentView.swift */,
-				C0B4B7B02C883707001495E9 /* Extensions */,
-				C0B4B7AD2C8836CF001495E9 /* Managers */,
+				C0B4B7BB2C89E8BA001495E9 /* Application */,
+				C0B4B7B72C89E864001495E9 /* Domain */,
+				C0B4B7BE2C89E8E3001495E9 /* Host */,
+				C0B4B7BC2C89E8C9001495E9 /* Infrastructure */,
+				C0B4B7BA2C89E8AC001495E9 /* Presentaion */,
+				C0B4B7BD2C89E8DA001495E9 /* UI */,
 				C05A26F02C8746870052F53A /* Assets.xcassets */,
 				C05A26F62C8746870052F53A /* Info.plist */,
 				C05A26F52C8746870052F53A /* MapTracker.entitlements */,
@@ -91,6 +97,54 @@
 				C0B4B7B52C88373A001495E9 /* CLLocationCoordinate2D+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C0B4B7B72C89E864001495E9 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				C0B4B7B82C89E870001495E9 /* MapRoutePart.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		C0B4B7BA2C89E8AC001495E9 /* Presentaion */ = {
+			isa = PBXGroup;
+			children = (
+				C05A26EC2C8746850052F53A /* ContentView.swift */,
+				C0B4B7BF2C89E939001495E9 /* MapPlannerView.swift */,
+			);
+			path = Presentaion;
+			sourceTree = "<group>";
+		};
+		C0B4B7BB2C89E8BA001495E9 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				C0B4B7B02C883707001495E9 /* Extensions */,
+				C0B4B7AD2C8836CF001495E9 /* Managers */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		C0B4B7BC2C89E8C9001495E9 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		C0B4B7BD2C89E8DA001495E9 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		C0B4B7BE2C89E8E3001495E9 /* Host */ = {
+			isa = PBXGroup;
+			children = (
+				C05A26EA2C8746850052F53A /* MapTrackerApp.swift */,
+			);
+			path = Host;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,10 +222,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0B4B7C02C89E939001495E9 /* MapPlannerView.swift in Sources */,
 				C05A26ED2C8746850052F53A /* ContentView.swift in Sources */,
 				C0B4B7B62C88373A001495E9 /* CLLocationCoordinate2D+Extensions.swift in Sources */,
 				C05A26EB2C8746850052F53A /* MapTrackerApp.swift in Sources */,
 				C0B4B7AF2C8836E5001495E9 /* LocationManager.swift in Sources */,
+				C0B4B7B92C89E872001495E9 /* MapRoutePart.swift in Sources */,
 				C0B4B7B22C883725001495E9 /* Array+Extensions.swift in Sources */,
 				C0B4B7B42C88372B001495E9 /* Double+Extensions.swift in Sources */,
 			);

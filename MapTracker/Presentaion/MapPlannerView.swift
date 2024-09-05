@@ -1,20 +1,14 @@
 //
-//  ContentView.swift
+//  MapPlannerView.swift
 //  MapTracker
 //
-//  Created by Roy Groot Hulze on 03/09/2024.
+//  Created by Roy Groot Hulze on 05/09/2024.
 //
 
 import SwiftUI
 import MapKit
 
-struct MapRoutePart: Identifiable {
-    var id: UUID = .init()
-    var polyline: MKPolyline
-    var distance: Double
-}
-
-struct ContentView: View {
+struct MapPlannerView: View {
     @StateObject private var locationManager = LocationManager()
     @State var selectedKilometers: Double = 0.0
     @State var selectedLocations: [CLLocationCoordinate2D] = []
@@ -24,9 +18,9 @@ struct ContentView: View {
         center: .utrecht,
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     ))
-
+    
     var body: some View {
-        ZStack(alignment: .bottom) {
+        NavigationStack {
             MapReader { reader in
                 Map(
                     position: $mapPosition
@@ -64,52 +58,34 @@ struct ContentView: View {
                     fetchRoute()
                 })
             }
-            
-            VStack {
-                Text("\(selectedKilometers.to2Decimals()) km")
-                    .foregroundStyle(.black)
-                
-                Divider()
-                
-                HStack {
-                    Spacer()
-                    Button {
-                        showConfirmDeleteDialog.toggle()
+            .navigationTitle("\(selectedKilometers.to2Decimals()) km")
+            .toolbar {
+                Button {
+                    showConfirmDeleteDialog.toggle()
+                } label: {
+                    Text("Reset")
+                }
+                .confirmationDialog("Confirm", isPresented: $showConfirmDeleteDialog) {
+                    Button(role: .destructive) {
+                        selectedLocations = []
+                        mapRouteParts = []
+                        selectedKilometers = 0
+                        showConfirmDeleteDialog = false
                     } label: {
-                        Text("Reset")
+                        Text("Yes, delete route")
                     }
-                    .confirmationDialog("Confirm", isPresented: $showConfirmDeleteDialog) {
-                        Button(role: .destructive) {
-                            selectedLocations = []
-                            mapRouteParts = []
-                            selectedKilometers = 0
-                            showConfirmDeleteDialog = false
-                        } label: {
-                            Text("Yes, delete route")
-                        }
-                    } message: {
-                        Text("Are you sure you want to reset all locations?")
-                    }
-                    
-                    Spacer()
-                    Divider()
-                    Spacer()
-                    
-                    Button {
-                        selectedLocations.savelyRemoveLast()
-                        let lastPart = mapRouteParts.savelyRemoveLast()
-                        selectedKilometers -= lastPart?.distance ?? 0
-                    } label: {
-                        Text("Undo")
-                    }
-                    Spacer()
+                } message: {
+                    Text("Are you sure you want to reset all locations?")
+                }
+                
+                Button {
+                    selectedLocations.savelyRemoveLast()
+                    let lastPart = mapRouteParts.savelyRemoveLast()
+                    selectedKilometers -= lastPart?.distance ?? 0
+                } label: {
+                    Text("Undo")
                 }
             }
-            .padding()
-            .frame(width: 200, height: 100)
-            .background(.white)
-            .cornerRadius(20)
-            .padding(.bottom, 1)
         }
         .onAppear {
             locationManager.checkLocationAuthorization()
@@ -121,7 +97,6 @@ struct ContentView: View {
                 span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
             ))
         }
-
     }
     
     func fetchRoute() {
