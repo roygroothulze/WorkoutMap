@@ -9,10 +9,11 @@ import SwiftUI
 import MapKit
 
 struct MapPlannerView: View {
+    @Environment(\.modelContext) private  var context
     @StateObject private var locationManager = LocationManager()
     @State var selectedKilometers: Double = 0.0
-    @State var selectedLocations: [CLLocationCoordinate2D] = []
-    @State var mapRouteParts: [MapRoutePart] = []
+    @State var selectedLocations: [RoutePinLocation] = []
+    @State var mapRouteParts: [RoutePart] = []
     @State private var showConfirmDeleteDialog = false
     @State private var mapPosition: MapCameraPosition = .region(MKCoordinateRegion(
         center: .utrecht,
@@ -28,23 +29,23 @@ struct MapPlannerView: View {
                     UserAnnotation()
                     
                     ForEach(mapRouteParts, id: \.id) { part in
-                        MapPolyline(part.polyline)
+                        MapPolyline(part.getPolyline())
                             .stroke(.blue, lineWidth: 2)
                     }
                     
-                    ForEach(selectedLocations, id: \.id) { location in
+                    ForEach(selectedLocations) { location in
                         if (location == selectedLocations.first) {
-                            Marker(coordinate: location) {
+                            Marker(coordinate: location.getAsCLLocationCoordinate2D()) {
                                 Image(systemName: "flag.fill")
                             }
                             .tint(.red)
                         } else if (location == selectedLocations.last) {
-                            Marker(coordinate: location) {
+                            Marker(coordinate: location.getAsCLLocationCoordinate2D()) {
                                 Image(systemName: "flag.pattern.checkered")
                             }
                             .tint(.green)
                         } else {
-                            Marker(coordinate: location) {
+                            Marker(coordinate: location.getAsCLLocationCoordinate2D()) {
                                 Text("")
                             }
                             .tint(.blue.opacity(0.5))
@@ -54,36 +55,49 @@ struct MapPlannerView: View {
                 .onTapGesture(perform: { screenCoord in
                     let tappedLocation = reader.convert(screenCoord, from: .local)
                     guard let tappedLocation else { return }
-                    selectedLocations.append(tappedLocation)
+                    selectedLocations.append(RoutePinLocation(index: selectedLocations.count + 1, from: tappedLocation))
                     fetchRoute()
                 })
             }
             .navigationTitle("\(selectedKilometers.to2Decimals()) km")
             .toolbar {
-                Button {
-                    showConfirmDeleteDialog.toggle()
-                } label: {
-                    Text("Reset")
-                }
-                .confirmationDialog("Confirm", isPresented: $showConfirmDeleteDialog) {
+                ToolbarItem(placement: .cancellationAction) {
                     Button(role: .destructive) {
-                        selectedLocations = []
-                        mapRouteParts = []
-                        selectedKilometers = 0
-                        showConfirmDeleteDialog = false
+                        showConfirmDeleteDialog.toggle()
                     } label: {
-                        Text("Yes, delete route")
+                        Text("Reset")
                     }
-                } message: {
-                    Text("Are you sure you want to reset all locations?")
+                    .confirmationDialog("Confirm", isPresented: $showConfirmDeleteDialog) {
+                        Button(role: .destructive) {
+                            selectedLocations = []
+                            mapRouteParts = []
+                            selectedKilometers = 0
+                            showConfirmDeleteDialog = false
+                        } label: {
+                            Text("Yes, delete route")
+                        }
+                    } message: {
+                        Text("Are you sure you want to reset all locations?")
+                    }
                 }
                 
-                Button {
-                    selectedLocations.savelyRemoveLast()
-                    let lastPart = mapRouteParts.savelyRemoveLast()
-                    selectedKilometers -= lastPart?.distance ?? 0
-                } label: {
-                    Text("Undo")
+                ToolbarItem(placement: .cancellationAction) {
+                    Button {
+                        selectedLocations.savelyRemoveLast()
+                        let lastPart = mapRouteParts.savelyRemoveLast()
+                        selectedKilometers -= lastPart?.distance ?? 0
+                    } label: {
+                        Text("Undo")
+                    }
+                }
+                
+                ToolbarItem {
+                    Button {
+                        saveAsRoute()
+                    } label: {
+                        Text("Save route")
+                    }
+                    .disabled(mapRouteParts.isEmpty)
                 }
             }
         }
@@ -106,8 +120,8 @@ struct MapPlannerView: View {
         guard let lastLocation, let secondLastLocation else { return }
         
         let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: secondLastLocation))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: lastLocation))
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: secondLastLocation.getAsCLLocationCoordinate2D()))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: lastLocation.getAsCLLocationCoordinate2D()))
         request.transportType = .walking
         
         Task {
@@ -117,10 +131,22 @@ struct MapPlannerView: View {
             if let route {
                 selectedKilometers += route.distance / 1000
                 let line = route.polyline
-                let part = MapRoutePart(polyline: line, distance: route.distance / 1000)
+                let part = RoutePart.fromPolyline(polyline: line, distance: route.distance / 1000)
                 mapRouteParts.append(part)
             }
         }
         
+    }
+    
+    func saveAsRoute() {
+        let name = "Route of \(selectedKilometers.to2Decimals())km"
+        
+        let route = Route(
+            name: name,
+            parts: mapRouteParts,
+            pinLocations: selectedLocations
+        )
+        context.insert(route)
+        try? context.save()
     }
 }

@@ -15,6 +15,11 @@ struct ContentView: View {
                 .tabItem {
                     Label("Map", systemImage: "map")
                 }
+            
+            SavedRoutesView()
+                .tabItem {
+                    Label("Saved Routes", systemImage: "folder.badge.plus")
+                }
         }
     }
 }
