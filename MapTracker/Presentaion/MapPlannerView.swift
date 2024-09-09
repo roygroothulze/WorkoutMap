@@ -19,6 +19,8 @@ struct MapPlannerView: View {
         center: .utrecht,
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     ))
+    @State private var showSaveRouteDialog = false
+    @State private var routeName = ""
     
     var body: some View {
         NavigationStack {
@@ -59,6 +61,7 @@ struct MapPlannerView: View {
                     fetchRoute()
                 })
             }
+            .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("\(selectedKilometers.to2Decimals()) km")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -93,11 +96,18 @@ struct MapPlannerView: View {
                 
                 ToolbarItem {
                     Button {
-                        saveAsRoute()
+                        routeName = "Route of \(selectedKilometers.to2Decimals())km"
+                        showSaveRouteDialog.toggle()
                     } label: {
                         Text("Save route")
                     }
                     .disabled(mapRouteParts.isEmpty)
+                    .alert("Enter the route name", isPresented: $showSaveRouteDialog) {
+                        TextField("Name", text: $routeName)
+                        Button("Save", action: saveAsRoute)
+                    } message: {
+                        Text("Give your route a name")
+                    }
                 }
             }
         }
@@ -139,10 +149,9 @@ struct MapPlannerView: View {
     }
     
     func saveAsRoute() {
-        let name = "Route of \(selectedKilometers.to2Decimals())km"
         
         let route = Route(
-            name: name,
+            name: routeName,
             parts: mapRouteParts,
             pinLocations: selectedLocations
         )

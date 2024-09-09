@@ -30,6 +30,7 @@
 		C05A26F02C8746870052F53A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C05A26F52C8746870052F53A /* MapTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MapTracker.entitlements; sourceTree = "<group>"; };
 		C05A26F62C8746870052F53A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C07D6BDD2C8F35DC00B45669 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C0B4B7AE2C8836E3001495E9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C0B4B7B12C883725001495E9 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		C0B4B7B32C88372B001495E9 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
@@ -61,6 +62,7 @@
 		C05A26DE2C8746850052F53A = {
 			isa = PBXGroup;
 			children = (
+				C07D6BDD2C8F35DC00B45669 /* README.md */,
 				C05A26FD2C876E060052F53A /* MapTracker */,
 				C05A26E82C8746850052F53A /* Products */,
 			);
