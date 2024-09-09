@@ -12,7 +12,7 @@ extension CLLocationCoordinate2D {
     static let utrecht = CLLocationCoordinate2D(latitude: 52.0833, longitude: 5.1217)
 }
 
-extension CLLocationCoordinate2D: @retroactive Identifiable, @retroactive Equatable {
+extension CLLocationCoordinate2D: Identifiable, Equatable {
     public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
         if lhs.id != rhs.id { return false }
         return lhs.id == rhs.id
