@@ -10,15 +10,12 @@ import MapKit
 
 struct MapPlannerView: View {
     @Environment(\.modelContext) private  var context
-    @StateObject private var locationManager = LocationManager()
+    @StateObject private var locationManager = LocationManager.shared
     @State var selectedKilometers: Double = 0.0
     @State var selectedLocations: [RoutePinLocation] = []
     @State var mapRouteParts: [RoutePart] = []
     @State private var showConfirmDeleteDialog = false
-    @State private var mapPosition: MapCameraPosition = .region(MKCoordinateRegion(
-        center: .utrecht,
-        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-    ))
+    @State private var mapPosition: MapCameraPosition = .automatic
     @State private var showSaveRouteDialog = false
     @State private var routeName = ""
     
@@ -111,10 +108,7 @@ struct MapPlannerView: View {
                 }
             }
         }
-        .onAppear {
-            locationManager.checkLocationAuthorization()
-        }
-        .onChange(of: locationManager.lastKnownLocation) { oldValue, newValue in
+        .onChange(of: locationManager.userLocation) { oldValue, newValue in
             guard let newValue, oldValue == nil else { return }
             mapPosition = .region(MKCoordinateRegion(
                 center: newValue,

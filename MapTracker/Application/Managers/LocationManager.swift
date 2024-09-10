@@ -7,30 +7,43 @@
 
 import CoreLocation
 
-final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
-    @Published var lastKnownLocation: CLLocationCoordinate2D?
+final class LocationManager: NSObject, ObservableObject {
+    static let shared = LocationManager()
+    
+    @Published var userLocation: CLLocationCoordinate2D?
     var manager = CLLocationManager()
     
-    func checkLocationAuthorization() {
-        manager.delegate = self
-        manager.startUpdatingLocation()
+    override
+    private init() {
+        super.init()
         
+        manager.delegate = self
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
+    }
+    
+    func updateLocation() {
         switch manager.authorizationStatus {
         case .notDetermined:
-            manager.requestWhenInUseAuthorization()
+            manager.requestAlwaysAuthorization()
+            userLocation = nil
+            break
         case .authorizedWhenInUse, .authorizedAlways:
-            lastKnownLocation = manager.location?.coordinate
+            userLocation = manager.location?.coordinate
             break
         default:
+            userLocation = nil
             break
         }
     }
-    
+}
+
+extension LocationManager: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        checkLocationAuthorization()
+        updateLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        lastKnownLocation = locations.last?.coordinate
+        userLocation = locations.last?.coordinate
     }
 }
