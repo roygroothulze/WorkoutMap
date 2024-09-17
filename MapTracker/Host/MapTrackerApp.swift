@@ -14,6 +14,7 @@ struct MapTrackerApp: App {
             let schema = Schema([
                 Route.self,
                 RoutePart.self,
+                RoutePinLocation.self,
                 CoordinateData.self,
             ])
             let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)

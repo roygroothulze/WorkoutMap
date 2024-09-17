@@ -16,7 +16,7 @@ struct SavedRouteDetailView: View {
     
     var body: some View {
         Map {
-            ForEach(route.parts, id: \.id) { part in
+            ForEach(route.parts ?? [], id: \.id) { part in
                 MapPolyline(part.getPolyline())
                     .stroke(.blue, lineWidth: 2)
             }

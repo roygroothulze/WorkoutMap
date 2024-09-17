@@ -11,18 +11,21 @@ import SwiftData
 
 @Model
 class CoordinateData {
-    var index: Int
-    var latitude: Double
-    var longitude: Double
+    var index: Int = 0
+    var routePart: RoutePart?
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
     
-    init(index: Int?, latitude: Double, longitude: Double) {
+    init(index: Int?, routePart: RoutePart? = nil, latitude: Double, longitude: Double) {
         self.index = index ?? 0
+        self.routePart = routePart
         self.latitude = latitude
         self.longitude = longitude
     }
     
-    init(index: Int, from: CLLocationCoordinate2D) {
+    init(index: Int, routePart: RoutePart? = nil, from: CLLocationCoordinate2D) {
         self.index = index
+        self.routePart = routePart
         self.latitude = from.latitude
         self.longitude = from.longitude
     }

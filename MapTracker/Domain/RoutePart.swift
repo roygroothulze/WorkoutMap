@@ -12,8 +12,8 @@ import SwiftData
 @Model
 class RoutePart {
     var route: Route?
-    var coordinatesData: [CoordinateData] // This will store coordinates as lat-long pairs
-    var distance: Double
+    var coordinatesData: [CoordinateData]? // This will store coordinates as lat-long pairs
+    var distance: Double = 0.0
     
     init(route: Route?, coordinates: [CLLocationCoordinate2D], distance: Double) {
         self.route = route
@@ -23,9 +23,9 @@ class RoutePart {
     
     // Method to get MKPolyline from stored coordinates
     func getPolyline() -> MKPolyline {
-        let coordinates = coordinatesData
+        let coordinates = coordinatesData?
             .sorted { $0.index < $1.index }
-            .map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) }
+            .map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) } ?? []
         return MKPolyline(coordinates: coordinates, count: coordinates.count)
     }
     

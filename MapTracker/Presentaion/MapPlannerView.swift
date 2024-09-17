@@ -7,8 +7,10 @@
 
 import SwiftUI
 import MapKit
+import StoreKit
 
 struct MapPlannerView: View {
+    @Environment(\.requestReview) var requestReview
     @Environment(\.modelContext) private  var context
     @StateObject private var locationManager = LocationManager.shared
     @State var selectedKilometers: Double = 0.0
@@ -143,7 +145,6 @@ struct MapPlannerView: View {
     }
     
     func saveAsRoute() {
-        
         let route = Route(
             name: routeName,
             parts: mapRouteParts,
@@ -151,5 +152,7 @@ struct MapPlannerView: View {
         )
         context.insert(route)
         try? context.save()
+        
+        requestReview()
     }
 }

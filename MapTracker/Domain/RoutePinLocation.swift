@@ -12,9 +12,9 @@ import MapKit
 @Model
 class RoutePinLocation {
     var route: Route?
-    var index: Int
-    var latitude: Double
-    var longitude: Double
+    var index: Int = 0
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
     
     init(index: Int?, latitude: Double, longitude: Double) {
         self.index = index ?? 0
