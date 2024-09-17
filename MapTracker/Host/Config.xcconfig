@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  MapTracker
+//
+//  Created by Roy Groot Hulze on 17/09/2024.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+TELEMENTRYDECK_APP_ID = C88F25B1-C384-4196-B9AE-F69F751A33D6
