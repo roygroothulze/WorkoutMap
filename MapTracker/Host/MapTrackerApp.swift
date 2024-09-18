@@ -28,10 +28,14 @@ struct MapTrackerApp: App {
     }()
     
     init() {
+        // TelemetryDeck
         let appId = (Bundle.main.object(forInfoDictionaryKey: "TELEMENTRYDECK_APP_ID") as? String) ?? ProcessInfo.processInfo.environment["TELEMENTRYDECK_APP_ID"]
         
         if let appId {
-            TelemetryDeck.initialize(config: .init(appID: appId))
+            let configuration = TelemetryManagerConfiguration(appID: appId)
+            configuration.sendNewSessionBeganSignal = true
+            configuration.testMode = Config.appConfiguration != .appStore
+            TelemetryDeck.initialize(config: configuration)
         }
         
     }
