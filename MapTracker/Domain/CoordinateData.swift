@@ -16,14 +16,14 @@ class CoordinateData {
     var latitude: Double = 0.0
     var longitude: Double = 0.0
     
-    init(index: Int?, routePart: RoutePart? = nil, latitude: Double, longitude: Double) {
+    init(index: Int?, routePart: RoutePart?, latitude: Double, longitude: Double) {
         self.index = index ?? 0
         self.routePart = routePart
         self.latitude = latitude
         self.longitude = longitude
     }
     
-    init(index: Int, routePart: RoutePart? = nil, from: CLLocationCoordinate2D) {
+    init(index: Int, routePart: RoutePart?, from: CLLocationCoordinate2D) {
         self.index = index
         self.routePart = routePart
         self.latitude = from.latitude

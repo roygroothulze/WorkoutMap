@@ -12,12 +12,12 @@ import SwiftData
 @Model
 class RoutePart {
     var route: Route?
-    var coordinatesData: [CoordinateData]? // This will store coordinates as lat-long pairs
+    var coordinatesData: [CoordinateData]? = []// This will store coordinates as lat-long pairs
     var distance: Double = 0.0
     
     init(route: Route?, coordinates: [CLLocationCoordinate2D], distance: Double) {
         self.route = route
-        self.coordinatesData = coordinates.enumerated().map {  CoordinateData(index: $0, latitude: $1.latitude, longitude: $1.longitude) }
+        self.coordinatesData = coordinates.enumerated().map { CoordinateData(index: $0, routePart: self, latitude: $1.latitude, longitude: $1.longitude) }
         self.distance = distance
     }
     
