@@ -53,6 +53,16 @@ struct MapPlannerView: View {
                         }
                     }
                 }
+                .mapControlVisibility(.visible)
+                .mapStyle(.standard)
+                .mapControls {
+                    /// Shows up when you pitch to zoom
+                    MapScaleView()
+                    /// Shows up when you rotate the map
+                    MapCompass()
+                    /// 3D and 2D button on the top right
+                    MapPitchToggle()
+                }
                 .onTapGesture(perform: { screenCoord in
                     let tappedLocation = reader.convert(screenCoord, from: .local)
                     guard let tappedLocation else { return }
