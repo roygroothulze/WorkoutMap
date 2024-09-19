@@ -36,3 +36,24 @@ class RoutePart {
         return RoutePart(route: route, coordinates: coordinates, distance: distance)
     }
 }
+
+extension MKPolyline {
+    // Helper to retrieve the coordinates array from an MKPolyline
+    var coordinates: [CLLocationCoordinate2D] {
+        var coords = [CLLocationCoordinate2D](repeating: kCLLocationCoordinate2DInvalid, count: self.pointCount)
+        self.getCoordinates(&coords, range: NSRange(location: 0, length: self.pointCount))
+        return coords
+    }
+}
+
+extension [RoutePart] {
+    func combine() -> MKPolyline {
+        // Flatten all coordinate arrays from each polyline into a single array
+        let allCoordinates = self.flatMap { polyline in
+            return polyline.getPolyline().coordinates
+        }
+        
+        // Create a new polyline with the combined coordinates
+        return MKPolyline(coordinates: allCoordinates, count: allCoordinates.count)
+    }
+}

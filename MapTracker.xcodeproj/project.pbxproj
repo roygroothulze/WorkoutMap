@@ -317,7 +317,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				OTHER_SWIFT_FLAGS = "\"-D TELEMENTRYDECK_APP_ID = \\\\\\\"$(TELEMENTRYDECK_APP_ID)\\\\\\\"\"";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.codeblock.MapTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -355,7 +355,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				OTHER_SWIFT_FLAGS = "\"-D TELEMENTRYDECK_APP_ID =\\\\\\\"$(TELEMENTRYDECK_APP_ID)\\\\\\\"\"";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.codeblock.MapTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";

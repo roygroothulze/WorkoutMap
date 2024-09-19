@@ -29,10 +29,8 @@ struct MapPlannerView: View {
                 ) {
                     UserAnnotation()
                     
-                    ForEach(mapRouteParts, id: \.id) { part in
-                        MapPolyline(part.getPolyline())
-                            .stroke(.blue, lineWidth: 2)
-                    }
+                    MapPolyline(mapRouteParts.combine())
+                        .stroke(.blue, lineWidth: 2)
                     
                     ForEach(selectedLocations) { location in
                         if (location == selectedLocations.first) {
@@ -45,11 +43,6 @@ struct MapPlannerView: View {
                                 Image(systemName: "flag.pattern.checkered")
                             }
                             .tint(.green)
-                        } else {
-                            Marker(coordinate: location.getAsCLLocationCoordinate2D()) {
-                                Text("")
-                            }
-                            .tint(.blue.opacity(0.5))
                         }
                     }
                 }
@@ -77,7 +70,7 @@ struct MapPlannerView: View {
                     Button(role: .destructive) {
                         showConfirmDeleteDialog.toggle()
                     } label: {
-                        Text("Reset")
+                        Text("New")
                     }
                     .confirmationDialog("Confirm", isPresented: $showConfirmDeleteDialog) {
                         Button(role: .destructive) {
@@ -89,7 +82,7 @@ struct MapPlannerView: View {
                             Text("Yes, delete route")
                         }
                     } message: {
-                        Text("Are you sure you want to reset all locations?")
+                        Text("Are you sure you want to delete this route?")
                     }
                 }
                 
