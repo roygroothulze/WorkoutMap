@@ -33,7 +33,7 @@
 		C00CBBE02C9A0C290082E92D /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		C03A447F2C9AA77000992213 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		C03A44822C9AA78400992213 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
-		C05A26E72C8746850052F53A /* MapTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C05A26E72C8746850052F53A /* WorkoutMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05A26EA2C8746850052F53A /* MapTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTrackerApp.swift; sourceTree = "<group>"; };
 		C05A26EC2C8746850052F53A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C05A26F02C8746870052F53A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		C05A26E82C8746850052F53A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C05A26E72C8746850052F53A /* MapTracker.app */,
+				C05A26E72C8746850052F53A /* WorkoutMap.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -195,9 +195,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C05A26E62C8746850052F53A /* MapTracker */ = {
+		C05A26E62C8746850052F53A /* WorkoutMap */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C05A26F82C8746870052F53A /* Build configuration list for PBXNativeTarget "MapTracker" */;
+			buildConfigurationList = C05A26F82C8746870052F53A /* Build configuration list for PBXNativeTarget "WorkoutMap" */;
 			buildPhases = (
 				C05A26E32C8746850052F53A /* Sources */,
 				C05A26E42C8746850052F53A /* Frameworks */,
@@ -207,12 +207,12 @@
 			);
 			dependencies = (
 			);
-			name = MapTracker;
+			name = WorkoutMap;
 			packageProductDependencies = (
 				C00CBBE62C9A112E0082E92D /* TelemetryDeck */,
 			);
 			productName = MapTracker;
-			productReference = C05A26E72C8746850052F53A /* MapTracker.app */;
+			productReference = C05A26E72C8746850052F53A /* WorkoutMap.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -230,7 +230,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C05A26E22C8746850052F53A /* Build configuration list for PBXProject "MapTracker" */;
+			buildConfigurationList = C05A26E22C8746850052F53A /* Build configuration list for PBXProject "WorkoutMap" */;
 			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -247,7 +247,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C05A26E62C8746850052F53A /* MapTracker */,
+				C05A26E62C8746850052F53A /* WorkoutMap */,
 			);
 		};
 /* End PBXProject section */
@@ -306,8 +306,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MapTracker/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MapTracker;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				INFOPLIST_KEY_CFBundleDisplayName = WorkoutMap;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To locate the region where you want to run";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -344,8 +344,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MapTracker/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MapTracker;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				INFOPLIST_KEY_CFBundleDisplayName = WorkoutMap;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To locate the region where you want to run";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -493,7 +493,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C05A26E22C8746850052F53A /* Build configuration list for PBXProject "MapTracker" */ = {
+		C05A26E22C8746850052F53A /* Build configuration list for PBXProject "WorkoutMap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C05A26FB2C8746870052F53A /* Debug */,
@@ -502,7 +502,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C05A26F82C8746870052F53A /* Build configuration list for PBXNativeTarget "MapTracker" */ = {
+		C05A26F82C8746870052F53A /* Build configuration list for PBXNativeTarget "WorkoutMap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C05A26F92C8746870052F53A /* Debug */,
