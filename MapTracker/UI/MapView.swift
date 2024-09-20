@@ -26,7 +26,7 @@ struct MapView: View {
                 // Display the new or legancy route
                 if let polyline = route.getPolyline() {
                     MapPolyline(polyline)
-                        .stroke(.green, lineWidth: 2)
+                        .stroke(.blue, lineWidth: 3)
                 } else {
                     ForEach(route.parts ?? [], id: \.id) { part in
                         MapPolyline(part.getPolyline())
