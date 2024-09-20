@@ -80,7 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				C07D6BDD2C8F35DC00B45669 /* README.md */,
-				C05A26FD2C876E060052F53A /* MapTracker */,
+				C05A26FD2C876E060052F53A /* WorkoutMap */,
 				C05A26E82C8746850052F53A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -93,7 +93,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C05A26FD2C876E060052F53A /* MapTracker */ = {
+		C05A26FD2C876E060052F53A /* WorkoutMap */ = {
 			isa = PBXGroup;
 			children = (
 				C0B4B7BB2C89E8BA001495E9 /* Application */,
@@ -107,7 +107,7 @@
 				C05A26F52C8746870052F53A /* MapTracker.entitlements */,
 				C07D6BE02C8F3F2900B45669 /* Preview Content */,
 			);
-			path = MapTracker;
+			path = WorkoutMap;
 			sourceTree = "<group>";
 		};
 		C07D6BE02C8F3F2900B45669 /* Preview Content */ = {
