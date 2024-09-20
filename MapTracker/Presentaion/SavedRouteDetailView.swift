@@ -10,55 +10,35 @@ import MapKit
 
 struct SavedRouteDetailView: View {
     @Environment(\.modelContext) private  var context
-    var route: Route
+    @State private var route: Route
     @State private var routeName = ""
     @State private var showRouteNameEditField: Bool = false
     
+    init(route: Route) {
+        _route = .init(initialValue: route)
+    }
+    
     var body: some View {
-        Map {
-            ForEach(route.parts ?? [], id: \.id) { part in
-                MapPolyline(part.getPolyline())
-                    .stroke(.blue, lineWidth: 2)
-            }
-            
-            ForEach(route.getPinLocation()) { location in
-                if (location == route.getPinLocation().first) {
-                    Marker(coordinate: location.getAsCLLocationCoordinate2D()) {
-                        Image(systemName: "flag.fill")
+        MapView(route: $route, allowEditingRoute: false)
+            .navigationTitle(route.name)
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        routeName = route.name
+                        showRouteNameEditField.toggle()
+                    } label: {
+                        Label("Edit name", systemImage: "pencil")
                     }
-                    .tint(.red)
-                } else if (location == route.getPinLocation().last) {
-                    Marker(coordinate: location.getAsCLLocationCoordinate2D()) {
-                        Image(systemName: "flag.pattern.checkered")
+                    .alert("Enter the route name", isPresented: $showRouteNameEditField) {
+                        TextField("Name", text: $routeName)
+                        Button("Cancel", role: .cancel) {}
+                        Button("Save", action: updateRouteName)
+                            .disabled(routeName.isEmpty)
+                    } message: {
+                        Text("Give your route a name")
                     }
-                    .tint(.green)
-                } else {
-                Marker(coordinate: location.getAsCLLocationCoordinate2D()) {
-                        Text("")
-                    }
-                    .tint(.blue.opacity(0.5))
                 }
             }
-        }
-        .navigationTitle(route.name)
-        .toolbar {
-            ToolbarItem {
-                Button {
-                    routeName = route.name
-                    showRouteNameEditField.toggle()
-                } label: {
-                    Label("Edit name", systemImage: "pencil")
-                }
-                .alert("Enter the route name", isPresented: $showRouteNameEditField) {
-                    TextField("Name", text: $routeName)
-                    Button("Cancel", role: .cancel) {}
-                    Button("Save", action: updateRouteName)
-                        .disabled(routeName.isEmpty)
-                } message: {
-                    Text("Give your route a name")
-                }
-            }
-        }
     }
     
     private func updateRouteName() {

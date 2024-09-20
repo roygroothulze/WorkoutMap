@@ -15,6 +15,7 @@
 		C05A26ED2C8746850052F53A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A26EC2C8746850052F53A /* ContentView.swift */; };
 		C05A26F12C8746870052F53A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C05A26F02C8746870052F53A /* Assets.xcassets */; };
 		C07D6BDF2C8F3C5100B45669 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07D6BDE2C8F3C5100B45669 /* Preview Assets.xcassets */; };
+		C0AC6D2F2C9D57F800E8E9A2 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AC6D2E2C9D57F800E8E9A2 /* MapView.swift */; };
 		C0B4B7AF2C8836E5001495E9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4B7AE2C8836E3001495E9 /* LocationManager.swift */; };
 		C0B4B7B22C883725001495E9 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4B7B12C883725001495E9 /* Array+Extensions.swift */; };
 		C0B4B7B42C88372B001495E9 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4B7B32C88372B001495E9 /* Double+Extensions.swift */; };
@@ -40,6 +41,7 @@
 		C05A26F62C8746870052F53A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C07D6BDD2C8F35DC00B45669 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C07D6BDE2C8F3C5100B45669 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C0AC6D2E2C9D57F800E8E9A2 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		C0B4B7AE2C8836E3001495E9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C0B4B7B12C883725001495E9 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		C0B4B7B32C88372B001495E9 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		C0B4B7BD2C89E8DA001495E9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C0AC6D2E2C9D57F800E8E9A2 /* MapView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0B4B7C62C89FCFE001495E9 /* SavedRouteDetailView.swift in Sources */,
+				C0AC6D2F2C9D57F800E8E9A2 /* MapView.swift in Sources */,
 				C0B4B7C02C89E939001495E9 /* MapPlannerView.swift in Sources */,
 				C05A26ED2C8746850052F53A /* ContentView.swift in Sources */,
 				C03A44802C9AA77000992213 /* Config.swift in Sources */,
@@ -317,7 +321,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.3.0;
 				OTHER_SWIFT_FLAGS = "\"-D TELEMENTRYDECK_APP_ID = \\\\\\\"$(TELEMENTRYDECK_APP_ID)\\\\\\\"\"";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.codeblock.MapTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -355,7 +359,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.3.0;
 				OTHER_SWIFT_FLAGS = "\"-D TELEMENTRYDECK_APP_ID =\\\\\\\"$(TELEMENTRYDECK_APP_ID)\\\\\\\"\"";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.codeblock.MapTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
