@@ -37,7 +37,7 @@
 		C05A26EA2C8746850052F53A /* MapTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTrackerApp.swift; sourceTree = "<group>"; };
 		C05A26EC2C8746850052F53A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C05A26F02C8746870052F53A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C05A26F52C8746870052F53A /* MapTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MapTracker.entitlements; sourceTree = "<group>"; };
+		C05A26F52C8746870052F53A /* WorkoutMap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WorkoutMap.entitlements; sourceTree = "<group>"; };
 		C05A26F62C8746870052F53A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C07D6BDD2C8F35DC00B45669 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C07D6BDE2C8F3C5100B45669 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 				C0B4B7BD2C89E8DA001495E9 /* UI */,
 				C05A26F02C8746870052F53A /* Assets.xcassets */,
 				C05A26F62C8746870052F53A /* Info.plist */,
-				C05A26F52C8746870052F53A /* MapTracker.entitlements */,
+				C05A26F52C8746870052F53A /* WorkoutMap.entitlements */,
 				C07D6BE02C8F3F2900B45669 /* Preview Content */,
 			);
 			path = WorkoutMap;
@@ -298,14 +298,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MapTracker/MapTracker.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WorkoutMap/WorkoutMap.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MapTracker/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"WorkoutMap/Preview Content\"";
 				DEVELOPMENT_TEAM = LGJ5JE8C9X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MapTracker/Info.plist;
+				INFOPLIST_FILE = WorkoutMap/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WorkoutMap;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To locate the region where you want to run";
@@ -336,14 +336,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MapTracker/MapTracker.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WorkoutMap/WorkoutMap.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MapTracker/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"WorkoutMap/Preview Content\"";
 				DEVELOPMENT_TEAM = LGJ5JE8C9X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MapTracker/Info.plist;
+				INFOPLIST_FILE = WorkoutMap/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WorkoutMap;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To locate the region where you want to run";
