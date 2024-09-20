@@ -23,6 +23,7 @@ struct SavedRoutesView: View {
                 ForEach(sortedRoutes) { route in
                     NavigationLink {
                         SavedRouteDetailView(route: route)
+                            .id(route.id)
                     } label: {
                         Text(route.name)
                     }
