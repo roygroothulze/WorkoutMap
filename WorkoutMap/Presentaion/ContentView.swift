@@ -20,6 +20,11 @@ struct ContentView: View {
                 .tabItem {
                     Label("Saved Routes", systemImage: "folder.badge.plus")
                 }
+            
+            PastWorkoutsView()
+                .tabItem {
+                    Label("Pasts Workouts", systemImage: "figure.run")
+                }
         }
     }
 }
