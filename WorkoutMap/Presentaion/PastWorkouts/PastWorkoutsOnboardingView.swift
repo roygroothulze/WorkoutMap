@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct PastWorkoutsOnboardingView: View {
+    @Environment(\.scenePhase) var scenePhase
+    
+    @ObservedObject private var workoutManager = WorkoutManager.shared
+    
     @Binding var didAskedForAccess: Bool
     @Binding var didGetAccess: Bool
     
@@ -58,6 +62,7 @@ struct PastWorkoutsOnboardingView: View {
                 Spacer()
                 Spacer()
             }
+            .frame(maxWidth: 300)
             .padding(.bottom, 16)
             
             Text(title())
@@ -86,6 +91,8 @@ struct PastWorkoutsOnboardingView: View {
         .padding(.horizontal, 20)
         .multilineTextAlignment(.center)
         .onAppear {
+            _reloadAuthStatus()
+            
             // Animate the scale of the icons.
             // Animation needs to start on opening this view
             withAnimation(Animation.easeInOut(duration: 1)) {
@@ -102,13 +109,30 @@ struct PastWorkoutsOnboardingView: View {
             scale = 0.001
             buttonScale = 0.5
         }
+        .onChange(of: scenePhase) { oldValue, newValue in
+            if newValue == .active {
+                _reloadAuthStatus()
+            }
+        }
+    }
+    
+    private func _reloadAuthStatus() {
+        let authStatus = workoutManager.getAuthorizationStatus()
+        didAskedForAccess = authStatus.containsNotDetermined().reversed
+        didGetAccess = authStatus.isAllAllowed()
     }
     
     private func _permissionButtonAction() {
-        withAnimation {
-            // TODO: Ask for real access
-            didAskedForAccess = true
-            didGetAccess = true
+        if didAskedForAccess {
+            Helper.openAppSettings()
+        } else {
+            _requestAuthorization()
+        }
+    }
+    
+    private func _requestAuthorization() {
+        workoutManager.requestAuthorization { _, _ in
+            _reloadAuthStatus()
         }
     }
 }

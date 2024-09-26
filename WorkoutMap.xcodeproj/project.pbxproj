@@ -14,7 +14,12 @@
 		C02588A92CA5495700699F79 /* Image+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02588A82CA5495700699F79 /* Image+Extensions.swift */; };
 		C02588AB2CA54CC200699F79 /* PastWorkoutsOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02588AA2CA54CC200699F79 /* PastWorkoutsOnboardingView.swift */; };
 		C02588AD2CA54CD300699F79 /* ImageWithOptionalOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02588AC2CA54CD300699F79 /* ImageWithOptionalOverlay.swift */; };
-		C02588AF2CA54CE700699F79 /* PastWorkoutsNoWorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02588AE2CA54CE700699F79 /* PastWorkoutsNoWorkoutsView.swift */; };
+		C02588AF2CA54CE700699F79 /* PastWorkoutsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02588AE2CA54CE700699F79 /* PastWorkoutsListView.swift */; };
+		C02588B22CA57C3000699F79 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02588B12CA57C2F00699F79 /* WorkoutManager.swift */; };
+		C02588B42CA596E700699F79 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02588B32CA596E600699F79 /* Helper.swift */; };
+		C02588B62CA5979000699F79 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02588B52CA5979000699F79 /* Workout.swift */; };
+		C02588B92CA597AE00699F79 /* HealthAuthStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02588B82CA597AE00699F79 /* HealthAuthStatus.swift */; };
+		C02588BB2CA597C500699F79 /* WorkoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02588BA2CA597C500699F79 /* WorkoutType.swift */; };
 		C03A44802C9AA77000992213 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03A447F2C9AA77000992213 /* Config.swift */; };
 		C03A44832C9AA78400992213 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03A44822C9AA78400992213 /* AppConfiguration.swift */; };
 		C05A26EB2C8746850052F53A /* MapTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A26EA2C8746850052F53A /* MapTrackerApp.swift */; };
@@ -42,7 +47,12 @@
 		C02588A82CA5495700699F79 /* Image+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extensions.swift"; sourceTree = "<group>"; };
 		C02588AA2CA54CC200699F79 /* PastWorkoutsOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastWorkoutsOnboardingView.swift; sourceTree = "<group>"; };
 		C02588AC2CA54CD300699F79 /* ImageWithOptionalOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithOptionalOverlay.swift; sourceTree = "<group>"; };
-		C02588AE2CA54CE700699F79 /* PastWorkoutsNoWorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastWorkoutsNoWorkoutsView.swift; sourceTree = "<group>"; };
+		C02588AE2CA54CE700699F79 /* PastWorkoutsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastWorkoutsListView.swift; sourceTree = "<group>"; };
+		C02588B12CA57C2F00699F79 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
+		C02588B32CA596E600699F79 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		C02588B52CA5979000699F79 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		C02588B82CA597AE00699F79 /* HealthAuthStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAuthStatus.swift; sourceTree = "<group>"; };
+		C02588BA2CA597C500699F79 /* WorkoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutType.swift; sourceTree = "<group>"; };
 		C03A447F2C9AA77000992213 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		C03A44822C9AA78400992213 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		C05A26E72C8746850052F53A /* WorkoutMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +95,17 @@
 				C02588A32CA4646100699F79 /* PastWorkoutsView.swift */,
 				C02588AA2CA54CC200699F79 /* PastWorkoutsOnboardingView.swift */,
 				C02588AC2CA54CD300699F79 /* ImageWithOptionalOverlay.swift */,
-				C02588AE2CA54CE700699F79 /* PastWorkoutsNoWorkoutsView.swift */,
+				C02588AE2CA54CE700699F79 /* PastWorkoutsListView.swift */,
+			);
+			path = PastWorkouts;
+			sourceTree = "<group>";
+		};
+		C02588B72CA597A900699F79 /* PastWorkouts */ = {
+			isa = PBXGroup;
+			children = (
+				C02588B52CA5979000699F79 /* Workout.swift */,
+				C02588BA2CA597C500699F79 /* WorkoutType.swift */,
+				C02588B82CA597AE00699F79 /* HealthAuthStatus.swift */,
 			);
 			path = PastWorkouts;
 			sourceTree = "<group>";
@@ -144,6 +164,7 @@
 		C0B4B7AD2C8836CF001495E9 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				C02588B12CA57C2F00699F79 /* WorkoutManager.swift */,
 				C0B4B7AE2C8836E3001495E9 /* LocationManager.swift */,
 			);
 			path = Managers;
@@ -164,11 +185,13 @@
 		C0B4B7B72C89E864001495E9 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				C02588B32CA596E600699F79 /* Helper.swift */,
 				C03A44812C9AA77D00992213 /* Common */,
 				C0B4B7C32C89EC23001495E9 /* Route.swift */,
 				C0B4B7C72C89FD46001495E9 /* RoutePinLocation.swift */,
 				C0B4B7B82C89E870001495E9 /* RoutePart.swift */,
 				C0B4B7C92C89FD66001495E9 /* CoordinateData.swift */,
+				C02588B72CA597A900699F79 /* PastWorkouts */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -298,12 +321,14 @@
 			files = (
 				C0B4B7C62C89FCFE001495E9 /* SavedRouteDetailView.swift in Sources */,
 				C0AC6D2F2C9D57F800E8E9A2 /* MapView.swift in Sources */,
+				C02588B22CA57C3000699F79 /* WorkoutManager.swift in Sources */,
 				C02588AB2CA54CC200699F79 /* PastWorkoutsOnboardingView.swift in Sources */,
 				C0B4B7C02C89E939001495E9 /* MapPlannerView.swift in Sources */,
 				C05A26ED2C8746850052F53A /* ContentView.swift in Sources */,
 				C02588A42CA4646100699F79 /* PastWorkoutsView.swift in Sources */,
 				C03A44802C9AA77000992213 /* Config.swift in Sources */,
 				C0B4B7B62C88373A001495E9 /* CLLocationCoordinate2D+Extensions.swift in Sources */,
+				C02588B92CA597AE00699F79 /* HealthAuthStatus.swift in Sources */,
 				C02588A72CA5494800699F79 /* Bool+Extensions.swift in Sources */,
 				C0B4B7CA2C89FD67001495E9 /* CoordinateData.swift in Sources */,
 				C03A44832C9AA78400992213 /* AppConfiguration.swift in Sources */,
@@ -312,12 +337,15 @@
 				C05A26EB2C8746850052F53A /* MapTrackerApp.swift in Sources */,
 				C0B4B7AF2C8836E5001495E9 /* LocationManager.swift in Sources */,
 				C0B4B7B92C89E872001495E9 /* RoutePart.swift in Sources */,
-				C02588AF2CA54CE700699F79 /* PastWorkoutsNoWorkoutsView.swift in Sources */,
+				C02588AF2CA54CE700699F79 /* PastWorkoutsListView.swift in Sources */,
 				C02588AD2CA54CD300699F79 /* ImageWithOptionalOverlay.swift in Sources */,
 				C0B4B7B22C883725001495E9 /* Array+Extensions.swift in Sources */,
 				C0B4B7B42C88372B001495E9 /* Double+Extensions.swift in Sources */,
 				C02588A92CA5495700699F79 /* Image+Extensions.swift in Sources */,
 				C0B4B7C22C89EB8B001495E9 /* SavedRoutesView.swift in Sources */,
+				C02588B62CA5979000699F79 /* Workout.swift in Sources */,
+				C02588BB2CA597C500699F79 /* WorkoutType.swift in Sources */,
+				C02588B42CA596E700699F79 /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +368,8 @@
 				INFOPLIST_FILE = WorkoutMap/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WorkoutMap;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app requires access to your workout data to track your fitness progress and sync workouts.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app requires access to your workout data to track your fitness progress and sync workouts.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To locate the region where you want to run";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -378,6 +408,8 @@
 				INFOPLIST_FILE = WorkoutMap/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WorkoutMap;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app requires access to your workout data to track your fitness progress and sync workouts.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app requires access to your workout data to track your fitness progress and sync workouts.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To locate the region where you want to run";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

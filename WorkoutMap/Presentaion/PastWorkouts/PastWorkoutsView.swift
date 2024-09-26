@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct PastWorkoutsView: View {
-    @State var didAskedForAccess: Bool = false
-    @State var didGetAccess: Bool = false
+    @ObservedObject private var workoutManager = WorkoutManager.shared
+    @State private var didAskedForAccess: Bool = false
+    @State private var didGetAccess: Bool = false
+    
+    init() {
+        _initHealthKit()
+    }
     
     var body: some View {
         // VStack is used to prevent app from moving to first tab after giving permission
         VStack {
             if (didGetAccess) {
-                PastWorkoutsNoWorkoutsView()
+                PastWorkoutsListView()
             } else {
                 PastWorkoutsOnboardingView(
                     didAskedForAccess: $didAskedForAccess,
@@ -24,4 +29,22 @@ struct PastWorkoutsView: View {
             }
         }
     }
+    
+    private func _initHealthKit() {
+        // Only continue if healthkit is availble
+        guard workoutManager.isHealthKitAvailable() else {
+            // TODO: Show error when healthkit is not available
+            print("HealthKit not available.")
+            return
+        }
+        
+        // Don't need to ask again foor authorization if already made choose
+        if workoutManager.isAuthorized() {
+            didGetAccess = true
+        } else if workoutManager.isDenied() {
+            didAskedForAccess = true
+        }
+        
+    }
 }
+

@@ -23,7 +23,7 @@ struct ContentView: View {
             
             PastWorkoutsView()
                 .tabItem {
-                    Label("Pasts Workouts", systemImage: "figure.run")
+                    Label("Past Workouts", systemImage: "figure.run")
                 }
         }
     }

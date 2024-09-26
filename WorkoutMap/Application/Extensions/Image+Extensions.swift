@@ -11,7 +11,7 @@ extension Image {
     static var running = Image(systemName: "figure.run")
     static var runningCircle = Image(systemName: "figure.run.circle")
     
-    static var walking = Image(systemName: "figure.walk.circle")
+    static var walking = Image(systemName: "figure.walk")
     static var walkingCircle = Image(systemName: "figure.walk.circle")
     
     static var cycle = Image(systemName: "figure.outdoor.cycle")

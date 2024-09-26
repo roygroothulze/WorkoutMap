@@ -1,5 +1,5 @@
 //
-//  PastWorkoutsNoWorkoutsView.swift
+//  PastWorkoutsListView.swift
 //  WorkoutMap
 //
 //  Created by Roy Groot Hulze on 26/09/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PastWorkoutsNoWorkoutsView: View {
+struct PastWorkoutsListView: View {
     var body: some View {
         VStack {
             Image(systemName: "person.crop.circle.badge.checkmark")
