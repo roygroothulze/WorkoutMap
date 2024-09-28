@@ -26,6 +26,8 @@
 		C05A26ED2C8746850052F53A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A26EC2C8746850052F53A /* ContentView.swift */; };
 		C05A26F12C8746870052F53A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C05A26F02C8746870052F53A /* Assets.xcassets */; };
 		C07D6BDF2C8F3C5100B45669 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07D6BDE2C8F3C5100B45669 /* Preview Assets.xcassets */; };
+		C09C2D642CA7D8E800866D3D /* PastWorkoutSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09C2D632CA7D8E800866D3D /* PastWorkoutSingleView.swift */; };
+		C09C2D662CA7E2B500866D3D /* [CLLocation]+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09C2D652CA7E2B100866D3D /* [CLLocation]+Extensions.swift */; };
 		C0AC6D2F2C9D57F800E8E9A2 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AC6D2E2C9D57F800E8E9A2 /* MapView.swift */; };
 		C0B4B7AF2C8836E5001495E9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4B7AE2C8836E3001495E9 /* LocationManager.swift */; };
 		C0B4B7B22C883725001495E9 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B4B7B12C883725001495E9 /* Array+Extensions.swift */; };
@@ -63,6 +65,8 @@
 		C05A26F62C8746870052F53A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C07D6BDD2C8F35DC00B45669 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C07D6BDE2C8F3C5100B45669 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C09C2D632CA7D8E800866D3D /* PastWorkoutSingleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastWorkoutSingleView.swift; sourceTree = "<group>"; };
+		C09C2D652CA7E2B100866D3D /* [CLLocation]+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "[CLLocation]+Extensions.swift"; sourceTree = "<group>"; };
 		C0AC6D2E2C9D57F800E8E9A2 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		C0B4B7AE2C8836E3001495E9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C0B4B7B12C883725001495E9 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 				C02588AA2CA54CC200699F79 /* PastWorkoutsOnboardingView.swift */,
 				C02588AC2CA54CD300699F79 /* ImageWithOptionalOverlay.swift */,
 				C02588AE2CA54CE700699F79 /* PastWorkoutsListView.swift */,
+				C09C2D632CA7D8E800866D3D /* PastWorkoutSingleView.swift */,
 			);
 			path = PastWorkouts;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 		C0B4B7B02C883707001495E9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C09C2D652CA7E2B100866D3D /* [CLLocation]+Extensions.swift */,
 				C02588A82CA5495700699F79 /* Image+Extensions.swift */,
 				C02588A62CA5494800699F79 /* Bool+Extensions.swift */,
 				C0B4B7B12C883725001495E9 /* Array+Extensions.swift */,
@@ -321,6 +327,7 @@
 			files = (
 				C0B4B7C62C89FCFE001495E9 /* SavedRouteDetailView.swift in Sources */,
 				C0AC6D2F2C9D57F800E8E9A2 /* MapView.swift in Sources */,
+				C09C2D642CA7D8E800866D3D /* PastWorkoutSingleView.swift in Sources */,
 				C02588B22CA57C3000699F79 /* WorkoutManager.swift in Sources */,
 				C02588AB2CA54CC200699F79 /* PastWorkoutsOnboardingView.swift in Sources */,
 				C0B4B7C02C89E939001495E9 /* MapPlannerView.swift in Sources */,
@@ -344,6 +351,7 @@
 				C02588A92CA5495700699F79 /* Image+Extensions.swift in Sources */,
 				C0B4B7C22C89EB8B001495E9 /* SavedRoutesView.swift in Sources */,
 				C02588B62CA5979000699F79 /* Workout.swift in Sources */,
+				C09C2D662CA7E2B500866D3D /* [CLLocation]+Extensions.swift in Sources */,
 				C02588BB2CA597C500699F79 /* WorkoutType.swift in Sources */,
 				C02588B42CA596E700699F79 /* Helper.swift in Sources */,
 			);

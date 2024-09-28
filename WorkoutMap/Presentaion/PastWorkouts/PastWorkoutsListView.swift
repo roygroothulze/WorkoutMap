@@ -19,56 +19,61 @@ struct PastWorkoutsListView: View {
         let imageSize: CGFloat = workoutsLoaded ? 50 : 100
         let titleText = workoutsLoaded ? "Past workouts" : "Loading workouts..."
          
-        VStack {
-            layout {
-                Image(systemName: systemImageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: imageSize)
-                    .padding(.trailing, workoutsLoaded ? 8 : 0)
-                    .padding(.bottom, workoutsLoaded ? 0 : 16)
-                    .id("hero-image")
-                Text(titleText)
-                    .font(.headline)
-                    .multilineTextAlignment(.center)
-                    .id("hero-title")
-                
-                if workoutsLoaded.reversed {
-                    Text("Access to your past workouts has been granted. Workouts will appear here.")
-                        .font(.caption)
-                        .multilineTextAlignment(.center)
-                        .id("hero-caption")
-                } else {
-                    Spacer()
-                }
-                
-            }
-            .padding(.horizontal, 20)
-            
-            if workoutsLoaded {
-                if workouts.isEmpty {
-                    Spacer()
-                    Text("No workouts yet.")
+        NavigationStack {
+            VStack {
+                layout {
+                    Image(systemName: systemImageName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: imageSize)
+                        .padding(.trailing, workoutsLoaded ? 8 : 0)
+                        .padding(.bottom, workoutsLoaded ? 0 : 16)
+                        .id("hero-image")
+                    Text(titleText)
                         .font(.headline)
-                    Spacer()
-                } else {
-                    List {
-                        ForEach(workouts) { workout in
-                            HStack {
-                                workout.type.getImage()
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 30, height: 30)
-                                    .padding(.trailing, 8)
-                                    .padding(.vertical, 4)
-                                
-                                Text("\(workout.distance.to2Decimals()) km")
-                                    .font(.callout)
-                                
-                                Spacer()
-                                
-                                Text(workout.date.formatted(.relative(presentation: .named)))
-                                    .font(.caption)
+                        .multilineTextAlignment(.center)
+                        .id("hero-title")
+                    
+                    if workoutsLoaded.reversed {
+                        Text("Access to your past workouts has been granted. Workouts will appear here.")
+                            .font(.caption)
+                            .multilineTextAlignment(.center)
+                            .id("hero-caption")
+                    } else {
+                        Spacer()
+                    }
+                    
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 8)
+                
+                if workoutsLoaded {
+                    if workouts.isEmpty {
+                        Spacer()
+                        Text("No workouts yet.")
+                            .font(.headline)
+                        Spacer()
+                    } else {
+                        List {
+                            ForEach(workouts) { workout in
+                                NavigationLink(destination: PastWorkoutSingleView(workout: workout)) {
+                                    HStack {
+                                        workout.type.getImage()
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 30, height: 30)
+                                            .padding(.trailing, 8)
+                                            .padding(.vertical, 4)
+                                        
+                                        Text("\(workout.distance.to2Decimals()) km")
+                                            .font(.callout)
+                                        
+                                        Spacer()
+                                        
+                                        Text(workout.date.formatted(.relative(presentation: .named)))
+                                            .font(.caption)
+                                    }
+                                }
                             }
                         }
                     }

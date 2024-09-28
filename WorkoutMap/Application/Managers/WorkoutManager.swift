@@ -7,6 +7,7 @@
 
 import SwiftUI
 import HealthKit
+import CoreLocation
 
 class WorkoutManager: ObservableObject {
     static var shared: WorkoutManager = .init()
@@ -35,6 +36,7 @@ class WorkoutManager: ObservableObject {
     func requestAuthorization(completion: @escaping (Bool, Error?) -> Void) {
         let readTypes: Set = [
             HKObjectType.workoutType(),
+            HKSeriesType.workoutRoute(), // For workout routes
             HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!,
             HKQuantityType.quantityType(forIdentifier: .distanceCycling)!
         ]
@@ -46,15 +48,18 @@ class WorkoutManager: ObservableObject {
     
     func getAuthorizationStatus() -> HealthAuthStatus {
         let workoutType = HKObjectType.workoutType()
+        let workoutRouteType = HKSeriesType.workoutRoute()
         let walkingRunningDistanceType = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!
         let cyclingDistanceType = HKQuantityType.quantityType(forIdentifier: .distanceCycling)!
         
         let workoutAuthStatus = healthStore.authorizationStatus(for: workoutType)
+        let workoutRouteAuthStatus = healthStore.authorizationStatus(for: workoutRouteType)
         let walkingRunningDistanceAuthStatus = healthStore.authorizationStatus(for: walkingRunningDistanceType)
         let cyclingDistanceAuthStatus = healthStore.authorizationStatus(for: cyclingDistanceType)
         
         return HealthAuthStatus(
             workouts: workoutAuthStatus,
+            route: workoutRouteAuthStatus,
             walkingRunningDistance: walkingRunningDistanceAuthStatus,
             cyclingDistance: cyclingDistanceAuthStatus
         )
@@ -87,7 +92,13 @@ class WorkoutManager: ObservableObject {
                     let duration = workoutSample.duration
                     let date = workoutSample.startDate
                     
-                    let workout = Workout(type: type, distance: distance, duration: duration, date: date)
+                    let workout = Workout(
+                        type: type,
+                        orginalWorkout: workoutSample,
+                        distance: distance,
+                        duration: duration,
+                        date: date
+                    )
                     workouts.append(workout)
                 }
             }
@@ -124,6 +135,64 @@ class WorkoutManager: ObservableObject {
             return workout.totalDistance!.doubleValue(for: HKUnit.meter()) / 1000.0 // Convert to kilometers
         }
         return 0.0
+    }
+    
+    // Async function to get the route for a given workout
+    func getWorkoutRoute(for workout: Workout) async throws -> [CLLocation] {
+
+        // Query the route associated with the workout
+        let workoutPredicate = HKQuery.predicateForObjects(from: workout.orginalWorkout)
+
+        // Fetch the route samples for the workout
+        guard let workoutRoutes = try await queryWorkoutRoute(predicate: workoutPredicate),
+              let firstRoute = workoutRoutes.first else {
+            return []
+        }
+
+        // Fetch all the CLLocation data points from the HKWorkoutRoute
+        let locations = try await fetchRouteLocations(from: firstRoute)
+        return locations
+    }
+
+    // Helper async function to query for HKWorkoutRoute samples
+    private func queryWorkoutRoute(predicate: NSPredicate) async throws -> [HKWorkoutRoute]? {
+        let routeType = HKSeriesType.workoutRoute()
+
+        return try await withCheckedThrowingContinuation { continuation in
+            let query = HKSampleQuery(sampleType: routeType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, results, error) in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else if let workoutRoutes = results as? [HKWorkoutRoute] {
+                    continuation.resume(returning: workoutRoutes)
+                } else {
+                    continuation.resume(returning: nil)
+                }
+            }
+            self.healthStore.execute(query)
+        }
+    }
+
+    // Helper async function to fetch the CLLocation objects from HKWorkoutRoute
+    private func fetchRouteLocations(from workoutRoute: HKWorkoutRoute) async throws -> [CLLocation] {
+        return try await withCheckedThrowingContinuation { continuation in
+            var allLocations: [CLLocation] = []
+
+            let routeQuery = HKWorkoutRouteQuery(route: workoutRoute) { (query, locationsOrNil, done, errorOrNil) in
+                if let error = errorOrNil {
+                    continuation.resume(throwing: error)
+                }
+
+                if let locations = locationsOrNil {
+                    allLocations.append(contentsOf: locations)
+                }
+
+                if done {
+                    continuation.resume(returning: allLocations)
+                }
+            }
+
+            self.healthStore.execute(routeQuery)
+        }
     }
 }
 
