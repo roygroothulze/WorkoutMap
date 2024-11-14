@@ -13,12 +13,12 @@ struct ContentView: View {
         TabView {
             MapPlannerView()
                 .tabItem {
-                    Label("Map", systemImage: "map")
+                    Label("Plan Route", systemImage: "map.fill")
                 }
             
             SavedRoutesView()
                 .tabItem {
-                    Label("Saved Routes", systemImage: "folder.badge.plus")
+                    Label("Routes", systemImage: "list.bullet")
                 }
             
             PastWorkoutsView()
@@ -26,5 +26,6 @@ struct ContentView: View {
                     Label("Past Workouts", systemImage: "figure.run")
                 }
         }
+        .tint(.accentColor)
     }
 }
