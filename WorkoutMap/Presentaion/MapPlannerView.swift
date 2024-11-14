@@ -18,64 +18,69 @@ struct MapPlannerView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
-                // Main Map View
-                MapView(route: $route, allowEditingRoute: true)
-                    .ignoresSafeArea()
-                
-                // Bottom Action Bar
-                HStack(spacing: 12) {
-                    // Undo Button
-                    ActionButton(
-                        icon: "arrow.uturn.backward",
-                        title: "Undo",
-                        style: .primary,
-                        action: route.removeLastLocation
-                    )
-                    .disabled(route.parts?.isEmpty ?? true)
+            GeometryReader { geometry in
+                ZStack(alignment: .bottom) {
+                    // Main Map View
+                    MapView(route: $route, allowEditingRoute: true)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .ignoresSafeArea(edges: [.horizontal, .bottom])
+                        .overlay(alignment: .top) {
+                            // Custom Navigation Bar with blur effect
+                            NavigationBarStats(
+                                distance: route.getDistance(),
+                                pinCount: route.pinLocations?.count ?? 0
+                            )
+                            .padding(.horizontal)
+                            .padding(.vertical, 8)
+                            .background(.ultraThinMaterial)
+                        }
                     
-                    // New Route Button
-                    ActionButton(
-                        icon: "trash",
-                        title: "Clear",
-                        style: .destructive,
-                        role: .destructive
-                    ) {
-                        showConfirmDeleteDialog.toggle()
+                    // Bottom Action Bar
+                    VStack(spacing: 0) {
+                        Divider()
+                            .background(.secondary.opacity(0.2))
+                        
+                        HStack(spacing: 12) {
+                            // Undo Button
+                            ActionButton(
+                                icon: "arrow.uturn.backward",
+                                title: "Undo",
+                                style: .primary,
+                                action: route.removeLastLocation
+                            )
+                            .disabled(route.parts?.isEmpty ?? true)
+                            
+                            // New Route Button
+                            ActionButton(
+                                icon: "trash",
+                                title: "Clear",
+                                style: .destructive,
+                                role: .destructive
+                            ) {
+                                showConfirmDeleteDialog.toggle()
+                            }
+                            .disabled(route.parts?.isEmpty ?? true)
+                            
+                            Spacer()
+                            
+                            // Save Button
+                            ActionButton(
+                                icon: "square.and.arrow.down",
+                                title: "Save",
+                                style: .primary
+                            ) {
+                                route.name = "Route of \(route.getDistance().to2Decimals())km"
+                                showSaveRouteDialog.toggle()
+                            }
+                            .disabled(route.parts?.isEmpty ?? true)
+                        }
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
                     }
-                    .disabled(route.parts?.isEmpty ?? true)
-                    
-                    Spacer()
-                    
-                    // Save Button
-                    ActionButton(
-                        icon: "square.and.arrow.down",
-                        title: "Save",
-                        style: .primary
-                    ) {
-                        route.name = "Route of \(route.getDistance().to2Decimals())km"
-                        showSaveRouteDialog.toggle()
-                    }
-                    .disabled(route.parts?.isEmpty ?? true)
-                }
-                .padding(.horizontal)
-                .padding(.vertical, 8)
-                .background {
-                    Rectangle()
-                        .fill(.background)
-                        .shadow(color: .black.opacity(0.1), radius: 8, y: -4)
-                        .ignoresSafeArea()
+                    .background(.ultraThinMaterial)
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    NavigationBarStats(
-                        distance: route.getDistance(),
-                        pinCount: route.pinLocations?.count ?? 0
-                    )
-                }
-            }
+            .navigationBarHidden(true)
             .alert("Save Route", isPresented: $showSaveRouteDialog) {
                 VStack(spacing: 12) {
                     TextField("Route Name", text: $route.name)

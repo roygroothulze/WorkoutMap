@@ -63,7 +63,7 @@ struct MapView: View {
                 .mapStyle(.standard)
                 .mapControls {
                     /// Shows up when you pitch to zoom
-                    MapScaleView()
+//                    MapScaleView()
                     /// Shows up when you rotate the map
                     MapCompass()
                     /// 3D and 2D button on the top right
