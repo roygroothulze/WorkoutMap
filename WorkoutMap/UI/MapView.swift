@@ -103,6 +103,9 @@ struct MapView: View {
                 }
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: .fetchRoute)) { _ in
+            _fetchRoute()
+        }
         .onChange(of: locationManager.userLocation) { oldValue, newValue in
             guard let newValue, oldValue == nil else { return }
             mapPosition = .region(MKCoordinateRegion(

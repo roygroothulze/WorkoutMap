@@ -50,6 +50,15 @@ struct MapPlannerView: View {
                             )
                             .disabled(route.parts?.isEmpty ?? true)
                             
+                            // Close Route Button (New)
+                            ActionButton(
+                                icon: "arrow.triangle.turn.up.right.circle",
+                                title: "Close",
+                                style: .primary,
+                                action: closeRoute
+                            )
+                            .disabled(route.pinLocations?.count ?? 0 < 2)
+                            
                             // New Route Button
                             ActionButton(
                                 icon: "trash",
@@ -113,6 +122,13 @@ struct MapPlannerView: View {
                 }
             )
         }
+    }
+    
+    private func closeRoute() {
+        guard let firstLocation = route.pinLocations?.first else { return }
+        route.apppendLocation(coordinates: firstLocation.getAsCLLocationCoordinate2D())
+        // Notify MapView to fetch the route for the last segment
+        NotificationCenter.default.post(name: .fetchRoute, object: nil)
     }
     
     private func _saveAsNewRoute() {
@@ -193,5 +209,10 @@ struct ActionButton: View {
             return .red
         }
     }
+}
+
+// Add extension for the notification name
+extension Notification.Name {
+    static let fetchRoute = Notification.Name("fetchRoute")
 }
 
