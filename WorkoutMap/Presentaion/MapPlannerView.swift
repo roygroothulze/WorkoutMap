@@ -18,14 +18,10 @@ struct MapPlannerView: View {
     
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .bottom) {
+            VStack(spacing: 0) {
                 // Main Map View
                 MapView(route: $route, allowEditingRoute: true)
                     .ignoresSafeArea()
-                    .safeAreaInset(edge: .bottom) {
-                        // Creates space for the button bar
-                        Color.clear.frame(height: 76)
-                    }
                 
                 // Bottom Action Bar
                 HStack(spacing: 12) {
@@ -63,7 +59,7 @@ struct MapPlannerView: View {
                     .disabled(route.parts?.isEmpty ?? true)
                 }
                 .padding(.horizontal)
-                .padding(.vertical, 12)
+                .padding(.vertical, 8)
                 .background {
                     Rectangle()
                         .fill(.background)
@@ -168,17 +164,17 @@ struct ActionButton: View {
     
     var body: some View {
         Button(role: role, action: action) {
-            VStack(spacing: 2) {
+            VStack(spacing: 1) {
                 Image(systemName: icon)
                     .renderingMode(.template)
-                    .font(.system(size: 22))
+                    .font(.system(size: 20))
                     .tint(.cyan)
                 Text(title)
                     .font(.caption2)
                     .fontWeight(.medium)
             }
-            .frame(minWidth: style == .primary ? 80 : 60)
-            .padding(.vertical, 8)
+            .frame(minWidth: style == .primary ? 70 : 50)
+            .padding(.vertical, 6)
             .contentShape(Rectangle())
             .foregroundStyle(foregroundColor)
         }
