@@ -71,12 +71,23 @@ class Route {
     func getDistance() -> Double { parts?.reduce(0) { $0 + $1.distance } ?? 0.0 }
     
     func apppendLocation(coordinates: CLLocationCoordinate2D) {
-        pinLocations?.append(
-            RoutePinLocation(index: (pinLocations?.count ?? 0) + 1, from: coordinates)
+        // Initialize arrays if they're nil
+        if pinLocations == nil {
+            pinLocations = []
+        }
+        if parts == nil {
+            parts = []
+        }
+        
+        // Add new pin location
+        let newPin = RoutePinLocation(
+            index: (pinLocations?.count ?? 0) + 1,
+            from: coordinates
         )
+        pinLocations?.append(newPin)
+        newPin.route = self
     }
     
-    /// Removes the last pin and route and return the distance
     func removeLastLocation() {
         pinLocations?.savelyRemoveLast()
         parts?.savelyRemoveLast()

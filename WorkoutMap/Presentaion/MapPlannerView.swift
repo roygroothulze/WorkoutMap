@@ -24,45 +24,38 @@ struct MapPlannerView: View {
             )
             .navigationTitle("\(route.getDistance().to2Decimals()) km")
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
+                ToolbarItemGroup(placement: .topBarLeading) {
                     Button(role: .destructive) {
                         showConfirmDeleteDialog.toggle()
                     } label: {
-                        Text("New")
+                        Label("New Route", systemImage: "plus.circle.fill")
+                            .foregroundStyle(.red)
                     }
-                    .confirmationDialog("Confirm", isPresented: $showConfirmDeleteDialog) {
-                        Button(role: .destructive) {
-                            route = .empty()
-                            showConfirmDeleteDialog = false
-                        } label: {
-                            Text("Yes, delete route")
-                        }
-                    } message: {
-                        Text("Are you sure you want to delete this route?")
-                    }
-                }
-                
-                ToolbarItem(placement: .cancellationAction) {
+                    
                     Button {
                         route.removeLastLocation()
                     } label: {
-                        Text("Undo")
+                        Label("Undo", systemImage: "arrow.uturn.backward.circle.fill")
                     }
+                    .disabled(route.parts?.isEmpty ?? true)
                 }
                 
-                ToolbarItem {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         route.name = "Route of \(route.getDistance().to2Decimals())km"
                         showSaveRouteDialog.toggle()
                     } label: {
-                        Text("Save route")
+                        Label("Save", systemImage: "square.and.arrow.down.fill")
                     }
                     .disabled(route.parts?.isEmpty ?? true)
-                    .alert("Enter the route name", isPresented: $showSaveRouteDialog) {
-                        TextField("Name", text: $route.name)
+                    .alert("Save Route", isPresented: $showSaveRouteDialog) {
+                        TextField("Route Name", text: $route.name)
+                            .textFieldStyle(.roundedBorder)
+                        Button("Cancel", role: .cancel) { }
                         Button("Save", action: _saveAsNewRoute)
+                            .disabled(route.name.isEmpty)
                     } message: {
-                        Text("Give your route a name")
+                        Text("Give your route a memorable name")
                     }
                 }
             }

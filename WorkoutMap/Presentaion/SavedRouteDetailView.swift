@@ -9,40 +9,35 @@ import SwiftUI
 import MapKit
 
 struct SavedRouteDetailView: View {
-    @Environment(\.modelContext) private  var context
-    @State private var route: Route
-    @State private var routeName = ""
-    @State private var showRouteNameEditField: Bool = false
-    
-    init(route: Route) {
-        _route = .init(initialValue: route)
-    }
+    let route: Route
     
     var body: some View {
-        MapView(route: $route, allowEditingRoute: false)
+        MapView(route: .constant(route), allowEditingRoute: false)
             .navigationTitle(route.name)
             .toolbar {
-                ToolbarItem {
-                    Button {
-                        routeName = route.name
-                        showRouteNameEditField.toggle()
-                    } label: {
-                        Label("Edit name", systemImage: "pencil")
-                    }
-                    .alert("Enter the route name", isPresented: $showRouteNameEditField) {
-                        TextField("Name", text: $routeName)
-                        Button("Cancel", role: .cancel) {}
-                        Button("Save", action: updateRouteName)
-                            .disabled(routeName.isEmpty)
-                    } message: {
-                        Text("Give your route a name")
-                    }
+                ToolbarItem(placement: .topBarTrailing) {
+                    ShareLink(
+                        item: route.name,
+                        subject: Text("Check out this route!"),
+                        message: Text("A \(route.getDistance().to2Decimals()) km route")
+                    )
                 }
             }
-    }
-    
-    private func updateRouteName() {
-        route.name = routeName
-        try? context.save()
+            .overlay(alignment: .bottom) {
+                VStack(spacing: 0) {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Distance")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                            Text("\(route.getDistance().to2Decimals()) km")
+                                .font(.title2.bold())
+                        }
+                        Spacer()
+                    }
+                    .padding()
+                    .background(.thinMaterial)
+                }
+            }
     }
 }

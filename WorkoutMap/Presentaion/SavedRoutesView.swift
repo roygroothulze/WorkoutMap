@@ -25,46 +25,60 @@ struct SavedRoutesView: View {
                         SavedRouteDetailView(route: route)
                             .id(route.id)
                     } label: {
-                        Text(route.name)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(route.name)
+                                .font(.headline)
+                            Text("\(route.getDistance().to2Decimals()) km")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(.vertical, 4)
                     }
                 }
                 .onDelete(perform: delete)
             }
-            .environment(\.editMode, $editMode)
+            .listStyle(.insetGrouped)
             .navigationTitle("Saved Routes")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .topBarTrailing) {
                     Menu {
-                        Menu {
+                        Section("Sort By") {
                             ForEach(SortOption.allCases, id: \.self) { option in
-                                Button(action: {
+                                Button {
                                     if sortOption == option {
                                         sortDirection = sortDirection.reverse()
                                     } else {
                                         sortDirection = .ascending
                                     }
-                                    // Update the sort option regardless
                                     sortOption = option
-                                }) {
-                                    Label(option.getTitle(), systemImage: sortOption == option ? (sortDirection == .ascending ? "chevron.up" : "chevron.down") : "")
+                                } label: {
+                                    Label(
+                                        option.getTitle(),
+                                        systemImage: sortOption == option ? 
+                                            (sortDirection == .ascending ? "chevron.up" : "chevron.down") : ""
+                                    )
                                 }
                             }
-                        } label: {
-                            Label("Sort By", systemImage: "arrow.up.arrow.down")
                         }
                         
-                        Button {
-                            editMode = editMode == .active ? .inactive : .active
-                        } label: {
-                            Label(editMode == .active ? "Done" : "Edit", systemImage: "pencil")
+                        Section {
+                            Button {
+                                editMode = editMode == .active ? .inactive : .active
+                            } label: {
+                                Label(editMode == .active ? "Done" : "Edit List", 
+                                      systemImage: editMode == .active ? "checkmark" : "pencil")
+                            }
                         }
                     } label: {
-                        Label("Options", systemImage: "ellipsis")
+                        Image(systemName: "ellipsis.circle")
+                            .font(.title3)
                     }
                 }
             }
         } detail: {
-            Text("Start by selecting a route to view its details.")
+            Text("Select a route to view details")
+                .font(.title2)
+                .foregroundStyle(.secondary)
         }
     }
     
