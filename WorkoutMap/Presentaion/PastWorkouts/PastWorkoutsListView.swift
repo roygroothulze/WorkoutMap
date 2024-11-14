@@ -89,7 +89,7 @@ struct PastWorkoutsListView: View {
     
     private func _loadWorkouts() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            workoutManager.syncWorkouts { success, error in
+            workoutManager.getWorkouts { success, error in
                 if success {
                     workouts = workoutManager.getAllWorkouts()
                     withAnimation {

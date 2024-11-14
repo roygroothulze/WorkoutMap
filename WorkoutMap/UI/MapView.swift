@@ -22,40 +22,6 @@ struct MapView: View {
                 position: $mapPosition
             ) {
                 UserAnnotation()
-                
-                // Display the new or legancy route
-                if let polyline = route.getPolyline() {
-                    MapPolyline(polyline)
-                        .stroke(.blue, lineWidth: 3)
-                } else {
-                    ForEach(route.parts ?? [], id: \.id) { part in
-                        MapPolyline(part.getPolyline())
-                            .stroke(.blue, lineWidth: 3)
-                    }
-                }
-                
-                let kilometerMarks = route.getKilometerMarks()
-                ForEach(Array(kilometerMarks.keys), id: \.self) { index in
-                    let markLocation = kilometerMarks[index]!
-                    Annotation("", coordinate: markLocation) {
-                        Text("\(index)")
-                            .font(.caption)
-                            .padding(6)
-                            .background(Circle().fill(Color.blue))
-                            .foregroundColor(.white)
-                            .overlay(
-                                Circle().stroke(Color.blue, lineWidth: 2)
-                            )
-                    }
-                }
-                
-                // Display the green finnish flag
-                if pinLocations.count > 1, let lastLocation = pinLocations.last {
-                    Marker(coordinate: lastLocation.getAsCLLocationCoordinate2D()) {
-                        Image(systemName: "flag.fill")
-                    }
-                    .tint(.green)
-                }
             }
             .mapControlVisibility(.visible)
             .mapStyle(.standard)

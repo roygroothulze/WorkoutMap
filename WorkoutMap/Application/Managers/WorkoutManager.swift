@@ -65,8 +65,8 @@ class WorkoutManager: ObservableObject {
         )
     }
     
-    // Sync workouts from the Health app
-    func syncWorkouts(completion: @escaping (Bool, Error?) -> Void) {
+    // Fetch workouts from the Health app
+    func getWorkouts(completion: @escaping (Bool, Error?) -> Void) {
         // Define workout predicate to fetch all workouts
         let workoutPredicate = HKQuery.predicateForWorkouts(with: .greaterThanOrEqualTo, duration: 0)
         
