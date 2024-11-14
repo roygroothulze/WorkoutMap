@@ -10,7 +10,7 @@ import StoreKit
 
 struct MapPlannerView: View {
     @Environment(\.requestReview) private var requestReview
-    @Environment(\.modelContext) private  var context
+    @Environment(\.modelContext) private var context
     
     @State private var route: Route = .empty()
     @State private var showConfirmDeleteDialog = false
@@ -18,54 +18,179 @@ struct MapPlannerView: View {
     
     var body: some View {
         NavigationStack {
-            MapView(
-                route: $route,
-                allowEditingRoute: true
-            )
-            .navigationTitle("\(route.getDistance().to2Decimals()) km")
-            .toolbar {
-                ToolbarItemGroup(placement: .topBarLeading) {
-                    Button(role: .destructive) {
-                        showConfirmDeleteDialog.toggle()
-                    } label: {
-                        Label("New Route", systemImage: "plus.circle.fill")
-                            .foregroundStyle(.red)
+            ZStack(alignment: .bottom) {
+                // Main Map View
+                MapView(route: $route, allowEditingRoute: true)
+                    .ignoresSafeArea()
+                    .safeAreaInset(edge: .bottom) {
+                        // Creates space for the button bar
+                        Color.clear.frame(height: 76)
                     }
+                
+                // Bottom Action Bar
+                HStack(spacing: 12) {
+                    // Undo Button
+                    ActionButton(
+                        icon: "arrow.uturn.backward",
+                        title: "Undo",
+                        style: .primary,
+                        action: route.removeLastLocation
+                    )
+                    .disabled(route.parts?.isEmpty ?? true)
                     
-                    Button {
-                        route.removeLastLocation()
-                    } label: {
-                        Label("Undo", systemImage: "arrow.uturn.backward.circle.fill")
+                    // New Route Button
+                    ActionButton(
+                        icon: "trash",
+                        title: "Clear",
+                        style: .destructive,
+                        role: .destructive
+                    ) {
+                        showConfirmDeleteDialog.toggle()
                     }
                     .disabled(route.parts?.isEmpty ?? true)
-                }
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
+                    
+                    Spacer()
+                    
+                    // Save Button
+                    ActionButton(
+                        icon: "square.and.arrow.down",
+                        title: "Save",
+                        style: .primary
+                    ) {
                         route.name = "Route of \(route.getDistance().to2Decimals())km"
                         showSaveRouteDialog.toggle()
-                    } label: {
-                        Label("Save", systemImage: "square.and.arrow.down.fill")
                     }
                     .disabled(route.parts?.isEmpty ?? true)
-                    .alert("Save Route", isPresented: $showSaveRouteDialog) {
-                        TextField("Route Name", text: $route.name)
-                            .textFieldStyle(.roundedBorder)
-                        Button("Cancel", role: .cancel) { }
-                        Button("Save", action: _saveAsNewRoute)
-                            .disabled(route.name.isEmpty)
-                    } message: {
-                        Text("Give your route a memorable name")
-                    }
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 12)
+                .background {
+                    Rectangle()
+                        .fill(.background)
+                        .shadow(color: .black.opacity(0.1), radius: 8, y: -4)
+                        .ignoresSafeArea()
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    NavigationBarStats(
+                        distance: route.getDistance(),
+                        pinCount: route.pinLocations?.count ?? 0
+                    )
+                }
+            }
+            .alert("Save Route", isPresented: $showSaveRouteDialog) {
+                VStack(spacing: 12) {
+                    TextField("Route Name", text: $route.name)
+                        .textFieldStyle(.roundedBorder)
+                    
+                    HStack {
+                        Button("Cancel", role: .cancel) { }
+                        Button("Save") {
+                            _saveAsNewRoute()
+                        }
+                        .disabled(route.name.isEmpty)
+                    }
+                }
+            } message: {
+                Text("Give your route a memorable name")
+            }
+            .confirmationDialog(
+                "Start New Route?",
+                isPresented: $showConfirmDeleteDialog,
+                actions: {
+                    Button("Clear Route", role: .destructive) {
+                        withAnimation {
+                            route = .empty()
+                        }
+                    }
+                    Button("Cancel", role: .cancel) { }
+                },
+                message: {
+                    Text("This will clear your current route. This action cannot be undone.")
+                }
+            )
         }
     }
     
     private func _saveAsNewRoute() {
         context.insert(route)
         try? context.save()
-        
         requestReview()
     }
 }
+
+// MARK: - Supporting Views
+struct NavigationBarStats: View {
+    let distance: Double
+    let pinCount: Int
+    
+    var body: some View {
+        HStack(spacing: 16) {
+            // Distance
+            HStack(spacing: 4) {
+                Image(systemName: "figure.walk")
+                    .foregroundStyle(.blue)
+                Text("\(distance.to2Decimals()) km")
+                    .fontWeight(.medium)
+            }
+            
+            // Divider
+            Rectangle()
+                .fill(.secondary.opacity(0.3))
+                .frame(width: 1, height: 16)
+            
+            // Waypoints
+            HStack(spacing: 4) {
+                Image(systemName: "mappin")
+                    .foregroundStyle(.red)
+                Text("\(pinCount)")
+                    .fontWeight(.medium)
+            }
+        }
+        .font(.callout)
+    }
+}
+
+// MARK: - Action Button Styles
+enum ActionButtonStyleState {
+    case primary
+    case destructive
+}
+
+struct ActionButton: View {
+    let icon: String
+    let title: String
+    var style: ActionButtonStyleState
+    var role: ButtonRole? = nil
+    let action: () -> Void
+    
+    var body: some View {
+        Button(role: role, action: action) {
+            VStack(spacing: 2) {
+                Image(systemName: icon)
+                    .renderingMode(.template)
+                    .font(.system(size: 22))
+                    .tint(.cyan)
+                Text(title)
+                    .font(.caption2)
+                    .fontWeight(.medium)
+            }
+            .frame(minWidth: style == .primary ? 80 : 60)
+            .padding(.vertical, 8)
+            .contentShape(Rectangle())
+            .foregroundStyle(foregroundColor)
+        }
+    }
+    
+    private var foregroundColor: Color {
+        switch style {
+        case .primary:
+            return .primary
+        case .destructive:
+            return .red
+        }
+    }
+}
+
